@@ -6,7 +6,7 @@ VIDEOS_DIR = './videos'  # Directorio donde se encuentran los videos
 if not os.path.exists(DATA_DIR):
     os.makedirs(DATA_DIR)
 
-number_of_classes = 2  # Número de clases
+number_of_classes = 5  # Número de clases
 dataset_size = 100  # Número de imágenes por clase por video
 
 # Función para capturar frames de un video y guardarlos en un directorio
