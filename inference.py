@@ -15,7 +15,13 @@ mp_drawing_styles = mp.solutions.drawing_styles
 
 hands = mp_hands.Hands(static_image_mode=True, min_detection_confidence=0.3)
 
-labels_dict = {0: 'A', 1: 'E', 2: 'I', 3: 'O', 4: 'U'}
+# Diccionario para mapear las etiquetas a las letras
+labels_dict = {0 : 'A', 1 : 'B', 2 : 'C', 3 : 'D', 4 : 'E', 
+               5 : 'F', 6 : 'G', 7 : 'H', 8 : 'I', 9 : 'J', 
+               10 : 'K', 11 : 'L', 12 : 'M', 13 : 'N', 14 : 'O', 
+               15 : 'P', 16 : 'Punto', 17 : 'Q', 18 : 'R', 19 : 'S', 
+               20 : 'T', 21 : 'U', 22 : 'V', 23 : 'W', 24 : 'X', 
+               25 : 'Y', 26 : 'Z'}
 
 while True:
     data_aux = []
@@ -41,8 +47,8 @@ while True:
                 data_aux.append(y)
 
         # Asegúrate de que data_aux tenga la longitud correcta
-        if len(data_aux) != 42:
-            data_aux += [0] * (42 - len(data_aux))
+        if len(data_aux) != 84:
+            data_aux += [0] * (84 - len(data_aux))
 
         # Predice con el modelo
         prediction = model.predict(np.array(data_aux).reshape(1, -1))
@@ -50,7 +56,7 @@ while True:
         predicted_label = labels_dict[prediction[0]]
 
 
-        cv.putText(frame, predicted_label, (100, 100), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
+        cv.putText(frame, predicted_label, (100, 100), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 3)
 
 
     cv.imshow('frame', frame)
