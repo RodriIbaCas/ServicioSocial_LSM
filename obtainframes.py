@@ -7,7 +7,7 @@ if not os.path.exists(DATA_DIR):
     os.makedirs(DATA_DIR)
 
 number_of_classes = 27  # Número de clases
-dataset_size = 100  # Número de imágenes por clase por video
+dataset_size = 150  # Número de imágenes por clase por video
 
 # Función para capturar frames de un video y guardarlos en un directorio
 def capture_frames_from_video(video_path, class_id, dataset_size):
