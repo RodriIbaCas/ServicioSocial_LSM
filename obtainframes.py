@@ -8,6 +8,7 @@ if not os.path.exists(DATA_DIR):
 
 number_of_classes = 26  # Número de clases
 dataset_size = 150  # Número de imágenes por clase por video
+videos_per_class = 2  # Número de videos por clase
 
 # Función para capturar frames de un video y guardarlos en un directorio
 def capture_frames_from_video(video_path, class_id, dataset_size):
@@ -33,7 +34,7 @@ def capture_frames_from_video(video_path, class_id, dataset_size):
 
     cap.release()
 
-# Procesa los videos en el directorio cambiando de clase al terminar cada video
+# Procesa los videos en el directorio cambiando de clase al terminar cada par de videos
 video_files = [f for f in os.listdir(VIDEOS_DIR) if os.path.isfile(os.path.join(VIDEOS_DIR, f))]
 
 for j in range(number_of_classes):
@@ -43,11 +44,14 @@ for j in range(number_of_classes):
 
     print('Collecting data for class {}'.format(j))
 
-    if j < len(video_files):
-        video_path = os.path.join(VIDEOS_DIR, video_files[j])
-        print(f"Processing video {video_path} for class {j}")
-        capture_frames_from_video(video_path, j, dataset_size)
-    else:
-        print(f"No more videos to process for class {j}")
+    for k in range(videos_per_class):
+        video_index = j * videos_per_class + k
+        if video_index < len(video_files):
+            video_path = os.path.join(VIDEOS_DIR, video_files[video_index])
+            print(f"Processing video {video_path} for class {j}")
+            capture_frames_from_video(video_path, j, dataset_size)
+        else:
+            print(f"No more videos to process for class {j}")
+            break
 
 cv2.destroyAllWindows()
