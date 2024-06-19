@@ -1,12 +1,12 @@
 import os
-import cv2
+import cv2 
 
 DATA_DIR = './data'
 VIDEOS_DIR = './videos'  # Directorio donde se encuentran los videos
 if not os.path.exists(DATA_DIR):
     os.makedirs(DATA_DIR)
 
-number_of_classes = 27  # Número de clases
+number_of_classes = 26  # Número de clases
 dataset_size = 150  # Número de imágenes por clase por video
 
 # Función para capturar frames de un video y guardarlos en un directorio
