@@ -41,8 +41,8 @@ while True:
                 data_aux.append(y)
 
         # Asegúrate de que data_aux tenga la longitud correcta
-        if len(data_aux) != 84:
-            data_aux += [0] * (84 - len(data_aux))
+        if len(data_aux) != 42:
+            data_aux += [0] * (42 - len(data_aux))
 
         # Predice con el modelo
         prediction = model.predict(np.array(data_aux).reshape(1, -1))
@@ -50,7 +50,7 @@ while True:
         predicted_label = labels_dict[prediction[0]]
 
 
-        cv.putText(frame, predicted_label, (40, 40), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
+        cv.putText(frame, predicted_label, (100, 100), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
 
 
     cv.imshow('frame', frame)
